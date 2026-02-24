@@ -1,0 +1,24 @@
+{
+  "name": "James Albert Escuro – My Story",
+  "short_name": "James A.",
+  "description": "Personal portfolio and autobiography by James Albert Escuro.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#060b14",
+  "theme_color": "#060b14",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": [
+    "portfolio",
+    "personal"
+  ]
+}

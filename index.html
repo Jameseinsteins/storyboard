@@ -5,6 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>James Albert Escuro – My Story</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#060b14">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="James A.">
+    <link rel="apple-touch-icon" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,7 +27,7 @@
     <!-- NAV -->
     <header>
         <div class="nav-container">
-            <div class="logo">James A.</div>
+            <div class="logo"><img src="logo.png" alt="James Albert Escuro" class="nav-logo-img"></div>
             <nav class="nav-links">
                 <button class="tab-btn active" data-tab="home" id="tab-home">Home</button>
                 <button class="tab-btn" data-tab="about" id="tab-about">About Me</button>
@@ -128,7 +137,7 @@
                 </div>
 
                 <div class="about-name-block">
-                    <h1 class="about-name">James Albertescuro</h1>
+                    <h1 class="about-name">James Albert Escuro</h1>
                     <p class="about-tagline">Musician · Coder · Family First</p>
                 </div>
 
@@ -166,7 +175,7 @@
                 <h2 class="about-headline">A simple life that taught me<br><em>everything that matters.</em></h2>
 
                 <p class="about-bio">
-                    I'm James Albertescuro — I grew up in a simple home. My father left us for
+                    I'm James Albert Escuro — I grew up in a simple home. My father left us for
                     another woman, and my mother, without missing a beat, became both parents
                     wrapped in one. She worked, she sacrificed, she provided. She showed me what
                     love looks like when it doesn't give up.
@@ -599,6 +608,16 @@
     <script src="maze.js"></script>
     <script src="ads.js"></script>
     <script src="music.js"></script>
+
+    <!-- Register Service Worker for PWA install -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .catch(() => navigator.serviceWorker.register('sw.js'));
+            });
+        }
+    </script>
 
     <script>
         /* ── About Me — animated stat counter ── */
