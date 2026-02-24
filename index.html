@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>James Albert Escuro – My Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">James A.</div>
+            <nav class="nav-links">
+                <button class="tab-btn active" data-tab="home" id="tab-home">Home</button>
+                <button class="tab-btn" data-tab="about" id="tab-about">About Me</button>
+                <button class="tab-btn" data-tab="lifestory" id="tab-lifestory">Life Story</button>
+                <button class="tab-btn" data-tab="goals" id="tab-goals">Goals</button>
+                <button class="tab-btn" data-tab="contact" id="tab-contact">Contact</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════ HOME TAB ═══════════════════════════ -->
+    <section class="tab-content active" id="tab-content-home">
+        <!-- Game canvas sits at the very back -->
+        <canvas id="game-canvas"></canvas>
+
+        <!-- Game HUD -->
+        <div class="game-hud" id="game-hud">
+            <div class="hud-score">⭐ <span id="score-display">0</span></div>
+            <button class="hud-switch" id="hud-switch" onclick="openGamePicker()">🎮 Switch Game</button>
+            <div class="hud-lives">❤️ <span id="lives-display">3</span></div>
+        </div>
+
+        <!-- Controls hint -->
+        <div class="game-hint" id="game-hint">
+            <span id="game-hint-text">🎮 Click "Switch Game" above to play a background game</span>
+        </div>
+
+        <!-- ══ GAME PICKER OVERLAY (hidden until user clicks Switch Game) ══ -->
+        <div class="game-picker hidden" id="game-picker">
+            <div class="picker-inner">
+                <h2 class="picker-title">Choose Your Game</h2>
+                <p class="picker-sub">Select a game to play in the background</p>
+                <div class="picker-grid">
+
+                    <button class="game-card" onclick="selectGame('asteroids')">
+                        <div class="game-card-icon">🚀</div>
+                        <div class="game-card-name">Asteroids</div>
+                        <div class="game-card-desc">Shoot rocks. Don't die.</div>
+                        <div class="game-card-keys">WASD · Space</div>
+                    </button>
+
+                    <button class="game-card" onclick="selectGame('snake')">
+                        <div class="game-card-icon">🐍</div>
+                        <div class="game-card-name">Snake</div>
+                        <div class="game-card-desc">Grow bigger. Avoid yourself.</div>
+                        <div class="game-card-keys">Arrow keys</div>
+                    </button>
+
+                    <button class="game-card" onclick="selectGame('pong')">
+                        <div class="game-card-icon">🏓</div>
+                        <div class="game-card-name">Pong</div>
+                        <div class="game-card-desc">Classic paddle battle vs AI.</div>
+                        <div class="game-card-keys">W / S or Mouse</div>
+                    </button>
+
+                    <button class="game-card" onclick="selectGame('breakout')">
+                        <div class="game-card-icon">🧱</div>
+                        <div class="game-card-name">Breakout</div>
+                        <div class="game-card-desc">Smash all the bricks.</div>
+                        <div class="game-card-keys">Mouse / A·D</div>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="cursor-bg" id="cursor-bg"></div>
+        <div class="hero">
+            <div class="hero-inner">
+                <p class="hero-eyebrow">Welcome to my world</p>
+                <h1 class="hero-title">My Life Story</h1>
+                <p class="hero-subtitle">An autobiography in storyboard form — told through moments, memories, and
+                    milestones.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn-primary" onclick="switchTab('lifestory')">Explore My Story</button>
+                    <button class="btn-ghost" onclick="switchTab('about')">About Me</button>
+                </div>
+            </div>
+            <div class="hero-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ ABOUT ME TAB ═══════════════════════════ -->
+    <section class="tab-content" id="tab-content-about">
+
+        <div class="about-bg-orbs">
+            <div class="about-orb about-orb-a"></div>
+            <div class="about-orb about-orb-b"></div>
+            <div class="about-orb about-orb-c"></div>
+        </div>
+
+        <div class="about-wrapper">
+
+            <!-- LEFT  — Photo + quick stats -->
+            <div class="about-left">
+                <div class="about-photo-ring">
+                    <div class="about-photo-inner">
+                        <img src="nowme.jpeg" alt="Me" class="about-photo">
+                    </div>
+                    <div class="about-ring-1"></div>
+                    <div class="about-ring-2"></div>
+                </div>
+
+                <div class="about-name-block">
+                    <h1 class="about-name">James Albertescuro</h1>
+                    <p class="about-tagline">Musician · Coder · Family First</p>
+                </div>
+
+                <div class="about-stats-row">
+                    <div class="about-stat">
+                        <span class="about-stat-num" data-target="1">0</span>
+                        <span class="about-stat-label">Mom, Always</span>
+                    </div>
+                    <div class="about-stat-divider"></div>
+                    <div class="about-stat">
+                        <span class="about-stat-num" data-target="5">0</span>
+                        <span class="about-stat-label">Life Chapters</span>
+                    </div>
+                    <div class="about-stat-divider"></div>
+                    <div class="about-stat">
+                        <span class="about-stat-num" data-target="100">0</span>
+                        <span class="about-stat-label">% Myself</span>
+                    </div>
+                </div>
+
+                <div class="about-traits">
+                    <span class="trait-pill pill-violet">🎵 Musician</span>
+                    <span class="trait-pill pill-teal">🏀 Baller</span>
+                    <span class="trait-pill pill-blue">💻 Coder</span>
+                    <span class="trait-pill pill-amber">🍳 Cook</span>
+                    <span class="trait-pill pill-red">➗ Math Nerd</span>
+                    <span class="trait-pill pill-green">🌍 Explorer</span>
+                </div>
+            </div>
+
+            <!-- RIGHT — Bio + values + currently -->
+            <div class="about-right">
+
+                <div class="about-section-tag">Who I Am</div>
+                <h2 class="about-headline">A simple life that taught me<br><em>everything that matters.</em></h2>
+
+                <p class="about-bio">
+                    I'm James Albertescuro — I grew up in a simple home. My father left us for
+                    another woman, and my mother, without missing a beat, became both parents
+                    wrapped in one. She worked, she sacrificed, she provided. She showed me what
+                    love looks like when it doesn't give up.
+                </p>
+
+                <p class="about-bio">
+                    I grew up curious — grabbing a basketball, learning a chord on an instrument,
+                    staying up late over a math problem, or cooking something new just to see if
+                    I could. I love exploring the unknown, even if I'm still learning to be okay
+                    with making mistakes along the way. That curiosity is what drives me forward.
+                </p>
+
+                <!-- Values -->
+                <div class="about-values">
+                    <div class="about-value-card">
+                        <div class="value-icon">❤️</div>
+                        <div class="value-body">
+                            <div class="value-title">Family</div>
+                            <div class="value-desc">My mother is my "why". Everything I build is for her.</div>
+                        </div>
+                    </div>
+                    <div class="about-value-card">
+                        <div class="value-icon">🌊</div>
+                        <div class="value-body">
+                            <div class="value-title">Resilience</div>
+                            <div class="value-desc">Hard beginnings build strong people.</div>
+                        </div>
+                    </div>
+                    <div class="about-value-card">
+                        <div class="value-icon">🔥</div>
+                        <div class="value-body">
+                            <div class="value-title">Courage</div>
+                            <div class="value-desc">I'm afraid of mistakes — but I show up anyway.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Currently -->
+                <div class="about-currently">
+                    <div class="about-section-tag" style="margin-bottom:12px;">Currently</div>
+                    <ul class="currently-list">
+                        <li><span class="curr-dot" style="background:#60a5fa"></span>💻 Learning to freelance as a web
+                            developer</li>
+                        <li><span class="curr-dot" style="background:#2dd4bf"></span>🏀 Playing basketball whenever I
+                            can</li>
+                        <li><span class="curr-dot" style="background:#a78bfa"></span>🎵 Playing instruments &amp;
+                            singing</li>
+                        <li><span class="curr-dot" style="background:#fbbf24"></span>🍳 Cooking and exploring new
+                            recipes</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ LIFE STORY TAB ═══════════════════════════ -->
+    <section class="tab-content" id="tab-content-lifestory">
+
+        <!-- ISSUE BAR -->
+        <div class="mag-issue-header">
+            <span class="mag-label">My Autobiography</span>
+            <div class="mag-divider"></div>
+            <span class="mag-date">Vol. I — Life Edition</span>
+        </div>
+
+        <div class="mag-grid">
+
+            <!-- ══ PANEL 1: Split-Screen Hero — warm amber ══ -->
+            <article class="mag-article p1-split interactive-panel" data-index="0">
+                <div class="p1-left">
+                    <div class="p1-number">01</div>
+                    <span class="mag-tag tag-amber">Chapter One</span>
+                    <h2 class="p1-title">Early<br>Life</h2>
+                    <p class="p1-desc">Where I was born, my family background, and the childhood memories that shaped
+                        everything.
+                    </p>
+                    <span class="mag-kw kw-amber">roots · family · beginnings</span>
+                    <div class="p1-cta">Click to read ↗</div>
+                </div>
+                <div class="p1-right">
+                    <img src="gooding.jpeg" alt="Early life photo">
+                    <div class="p1-img-frame"></div>
+                </div>
+            </article>
+
+            <!-- ══ PANEL 2: Diagonal Slash — cyan teal ══ -->
+            <article class="mag-article p2-slash interactive-panel" data-index="1">
+                <div class="p2-img-bg">
+                    <img src="earlychild.jpeg" alt="Growing up photo">
+                </div>
+                <div class="p2-slash-overlay"></div>
+                <div class="p2-content">
+                    <span class="mag-tag tag-teal">Chapter Two</span>
+                    <h2 class="p2-title">Growing<br><em>Up</em></h2>
+                    <p>School years, friendships, challenges, and early interests and talents.</p>
+                    <span class="mag-kw kw-teal">learning · change · discovery</span>
+                </div>
+                <div class="p2-number">02</div>
+            </article>
+
+            <!-- ══ PANEL 3: Full Bleed Cinematic — fiery red-orange ══ -->
+            <article class="mag-article p3-cinematic interactive-panel" data-index="2">
+                <div class="p3-img">
+                    <img src="schooldays.jpeg" alt="School days photo">
+                    <div class="p3-overlay"></div>
+                </div>
+                <div class="p3-content">
+                    <div class="p3-rule"></div>
+                    <span class="mag-tag tag-red">Chapter Three</span>
+                    <h2 class="p3-title">"The<br>Turning<br>Point"</h2>
+                    <p>The moment — the decision — that cracked me open and reshaped who I am.</p>
+                    <span class="mag-kw kw-red">struggle · decision · growth</span>
+                    <div class="p3-number">03</div>
+                </div>
+            </article>
+
+            <!-- ══ PANEL 4: Quote-block Feature — violet purple ══ -->
+            <article class="mag-article p4-feature interactive-panel" data-index="3">
+                <div class="p4-img">
+                    <img src="nowme.jpeg" alt="Present day photo">
+                    <div class="p4-overlay"></div>
+                </div>
+                <div class="p4-content">
+                    <span class="mag-tag tag-violet">Chapter Four</span>
+                    <div class="p4-quote-mark">"</div>
+                    <h2 class="p4-title">Present Day</h2>
+                    <p class="p4-deck">Passion drives me. Purpose anchors me. This is the life I'm living —<em> right
+                            now.</em>
+                    </p>
+                    <span class="mag-kw kw-violet">purpose · passion · now</span>
+                </div>
+                <div class="p4-number">04</div>
+            </article>
+
+            <!-- ══ PANEL 5: Full-Bleed Cinematic Closer — gold ══ -->
+            <article class="mag-article p5-closer interactive-panel" data-index="4">
+                <div class="p5-img">
+                    <img src="lala.jpeg" alt="Looking ahead photo">
+                    <div class="p5-overlay"></div>
+                </div>
+                <div class="p5-content">
+                    <span class="mag-tag tag-gold">Chapter Five</span>
+                    <h2 class="p5-title">Looking<br>Ahead</h2>
+                    <p class="p5-deck">My dreams, ambitions, and the person I am still becoming.</p>
+                    <span class="mag-kw kw-gold">dreams · future · legacy</span>
+                    <div class="p5-dots">
+                        <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span
+                            class="dot"></span><span class="dot"></span>
+                    </div>
+                </div>
+                <div class="p5-number">05</div>
+            </article>
+
+        </div>
+
+        <!-- Audio Player (hidden, auto-plays) -->
+        <div class="audio-bar" style="display: none;">
+            <span class="audio-label">🎵 My Brief</span>
+            <audio id="story-audio" src="brief.mp3"></audio>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ GOALS TAB ═══════════════════════════ -->
+    <section class="tab-content" id="tab-content-goals">
+
+        <div class="goals-bg"></div>
+
+        <div class="goals-wrapper">
+            <div class="goals-header">
+                <div class="goals-eyebrow">Vision Board</div>
+                <h2 class="goals-title">Where I'm<br><span class="goals-title-accent">Going</span></h2>
+                <p class="goals-subtitle">Dreams aren't wishes. They're plans without deadlines yet.</p>
+            </div>
+
+            <div class="goals-board">
+
+                <!-- COLUMN 1 — This Year -->
+                <div class="goals-column">
+                    <div class="goals-col-header col-hdr-blue">
+                        <span class="col-hdr-icon">⚡</span>
+                        <div>
+                            <div class="col-hdr-label">Right Now</div>
+                            <div class="col-hdr-sublabel">This Year · Short-term</div>
+                        </div>
+                    </div>
+
+                    <div class="goal-card gc-blue">
+                        <div class="gc-icon">💻</div>
+                        <div class="gc-body">
+                            <div class="gc-title">Start freelancing web pages</div>
+                            <div class="gc-desc">Land my first client this year and turn my coding skills into income
+                                for my family.
+                            </div>
+                        </div>
+                        <div class="gc-status">In Progress</div>
+                    </div>
+                    <div class="goal-card gc-blue">
+                        <div class="gc-icon">🎓</div>
+                        <div class="gc-body">
+                            <div class="gc-title">Get better at JavaScript</div>
+                            <div class="gc-desc">Level up my skills so I can build anything a client could ask for.
+                            </div>
+                        </div>
+                        <div class="gc-status">Active</div>
+                    </div>
+                    <div class="goal-card gc-blue">
+                        <div class="gc-icon">❤️</div>
+                        <div class="gc-body">
+                            <div class="gc-title">Provide for my mother</div>
+                            <div class="gc-desc">She gave me everything with nothing. It's time I gave something back.
+                            </div>
+                        </div>
+                        <div class="gc-status">Always</div>
+                    </div>
+                </div>
+
+                <!-- COLUMN 2 — Next Few Years -->
+                <div class="goals-column">
+                    <div class="goals-col-header col-hdr-violet">
+                        <span class="col-hdr-icon">🚀</span>
+                        <div>
+                            <div class="col-hdr-label">On the Horizon</div>
+                            <div class="col-hdr-sublabel">4-7 Years · Medium-term</div>
+                        </div>
+                    </div>
+
+                    <div class="goal-card gc-violet">
+                        <div class="gc-icon">💼</div>
+                        <div class="gc-body">
+                            <div class="gc-title">Build a steady freelance income</div>
+                            <div class="gc-desc">Turn one client into many — a real, reliable career in web development.
+                            </div>
+                        </div>
+                        <div class="gc-status">Planned</div>
+                    </div>
+                    <div class="goal-card gc-violet">
+                        <div class="gc-icon">🎵</div>
+                        <div class="gc-body">
+                            <div class="gc-title">Record original music</div>
+                            <div class="gc-desc">Put my voice and instruments out into the world, even if just for me.
+                            </div>
+                        </div>
+                        <div class="gc-status">Dreaming</div>
+                    </div>
+                    <div class="goal-card gc-violet">
+                        <div class="gc-icon">🏠</div>
+                        <div class="gc-body">
+                            <div class="gc-title">A home for my family</div>
+                            <div class="gc-desc">Give my mother comfort and security — the kind she never asked for but
+                                deserves.
+                            </div>
+                        </div>
+                        <div class="gc-status">Building</div>
+                    </div>
+                </div>
+
+                <!-- COLUMN 3 — Someday -->
+                <div class="goals-column">
+                    <div class="goals-col-header col-hdr-gold">
+                        <span class="col-hdr-icon">🌟</span>
+                        <div>
+                            <div class="col-hdr-label">The Long Game</div>
+                            <div class="col-hdr-sublabel">Lifetime · Legacy</div>
+                        </div>
+                    </div>
+
+                    <div class="goal-card gc-gold">
+                        <div class="gc-icon">🏆</div>
+                        <div class="gc-body">
+                            <div class="gc-title">Honor my mother's sacrifice</div>
+                            <div class="gc-desc">Live a life worthy of everything she gave up so I could have mine.
+                            </div>
+                        </div>
+                        <div class="gc-status">Lifelong</div>
+                    </div>
+                    <div class="goal-card gc-gold">
+                        <div class="gc-icon">🌊</div>
+                        <div class="gc-body">
+                            <div class="gc-title">Conquer the fear of mistakes</div>
+                            <div class="gc-desc">Stop letting imperfection be the reason I don't try. Start anyway.
+                            </div>
+                        </div>
+                        <div class="gc-status">Growing</div>
+                    </div>
+                    <div class="goal-card gc-gold">
+                        <div class="gc-icon">🌍</div>
+                        <div class="gc-body">
+                            <div class="gc-title">Leave a lasting legacy</div>
+                            <div class="gc-desc">Impact, music, code, or kindness — something that outlasts me.</div>
+                        </div>
+                        <div class="gc-status">Always</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Quote footer -->
+            <div class="goals-quote">
+                <span class="goals-quote-mark">"</span>
+                The future belongs to those who believe in<br>the beauty of their dreams.
+                <span class="goals-quote-author">— Eleanor Roosevelt</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ CONTACT TAB ═══════════════════════════ -->
+    <section class="tab-content" id="tab-content-contact">
+
+        <div class="contact-bg-grid"></div>
+
+        <div class="contact-wrapper">
+
+            <!-- LEFT — Personal message -->
+            <div class="contact-left">
+                <div class="contact-terminal">
+                    <div class="terminal-bar">
+                        <span class="t-dot t-red"></span>
+                        <span class="t-dot t-yellow"></span>
+                        <span class="t-dot t-green"></span>
+                        <span class="t-title">james.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="t-prompt">$</span> whoami</p>
+                        <p class="t-output">James Albert Escuro — a simple kid<br>with big dreams and a mother<br>who
+                            never stopped
+                            believing.</p>
+                        <p style="margin-top:16px"><span class="t-prompt">$</span> cat message.txt</p>
+                        <p class="t-output">
+                            Hi — I'm James.<br><br>
+                            I'm just a simple guy trying to<br>
+                            do something meaningful with the<br>
+                            skills I'm building.<br><br>
+                            If you need a webpage built, want<br>
+                            to collaborate, or just want to<br>
+                            say something — I'm listening.
+                        </p>
+                        <p style="margin-top:16px"><span class="t-prompt">$</span> <span class="t-cursor">_</span></p>
+                    </div>
+                </div>
+
+                <!-- Social links -->
+                <div class="contact-socials">
+                    <div class="contact-socials-label">Find me here</div>
+                    <div class="social-links">
+                        <a href="#" class="social-link sl-blue" title="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="#" class="social-link sl-sky" title="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.514c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+                            </svg>
+                            Facebook
+                        </a>
+                        <a href="#" class="social-link sl-pink" title="Instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                            Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT — Send a message form -->
+            <div class="contact-right">
+                <div class="contact-form-header">
+                    <div class="about-section-tag">Say Hello</div>
+                    <h2 class="contact-form-title">Drop me<br>a <em>message</em></h2>
+                    <p class="contact-form-sub">I read everything. Sometimes I reply slowly — but I always reply.</p>
+                </div>
+
+                <form class="contact-form" onsubmit="handleContactForm(event)">
+                    <div class="cf-field">
+                        <label class="cf-label" for="cf-name">Your name</label>
+                        <input class="cf-input" id="cf-name" type="text" placeholder="What do I call you?"
+                            autocomplete="off">
+                    </div>
+                    <div class="cf-field">
+                        <label class="cf-label" for="cf-subject">Subject</label>
+                        <input class="cf-input" id="cf-subject" type="text" placeholder="What's on your mind?">
+                    </div>
+                    <div class="cf-field">
+                        <label class="cf-label" for="cf-msg">Message</label>
+                        <textarea class="cf-input cf-textarea" id="cf-msg" placeholder="Say anything. Seriously."
+                            rows="5"></textarea>
+                    </div>
+                    <button class="cf-submit" type="submit">
+                        <span id="cf-btn-text">Send Message ↗</span>
+                    </button>
+                </form>
+
+                <div class="cf-sent-msg" id="cf-sent-msg" style="display:none">
+                    <div class="cf-sent-icon">📬</div>
+                    <h3>Message received!</h3>
+                    <p>Thanks for reaching out. I'll get back to you soon.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════ FULLSCREEN MODAL ═══════════════════════════ -->
+    <div class="panel-modal" id="panel-modal">
+        <button class="modal-close" id="modal-close">×</button>
+        <button class="modal-nav prev" id="modal-prev">❮</button>
+        <button class="modal-nav next" id="modal-next">❯</button>
+        <div class="modal-content">
+            <div class="modal-image-container">
+                <img id="modal-image" src="" alt="">
+            </div>
+            <div class="modal-text">
+                <h3 id="modal-title"></h3>
+                <p id="modal-desc"></p>
+                <span id="modal-keywords"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="animation.js"></script>
+    <script src="game.js"></script>
+    <script src="pixelwater.js"></script>
+    <script src="storygame.js"></script>
+    <script src="maze.js"></script>
+    <script src="ads.js"></script>
+    <script src="music.js"></script>
+
+    <script>
+        /* ── About Me — animated stat counter ── */
+        function runStatCounters() {
+            document.querySelectorAll('.about-stat-num').forEach(el => {
+                const target = parseInt(el.dataset.target, 10);
+                const duration = 1200;
+                const start = performance.now();
+                const startVal = 0;
+                function step(now) {
+                    const elapsed = now - start;
+                    const pct = Math.min(elapsed / duration, 1);
+                    const ease = 1 - Math.pow(1 - pct, 3);
+                    el.textContent = Math.round(startVal + (target - startVal) * ease);
+                    if (pct < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            });
+        }
+
+        /* Re-run counters each time About tab is shown */
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.dataset.tab === 'about') {
+                    setTimeout(runStatCounters, 200);
+                }
+            });
+        });
+
+        /* ── Contact form — show success state ── */
+        function handleContactForm(e) {
+            e.preventDefault();
+            const form = e.target;
+            const sent = document.getElementById('cf-sent-msg');
+            form.style.display = 'none';
+            if (sent) sent.style.display = 'flex';
+        }
+    </script>
+</body>
+
+</html>

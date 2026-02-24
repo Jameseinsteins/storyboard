@@ -1,0 +1,16 @@
+# OS & editor artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Node (if ever used)
+node_modules/
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.log
